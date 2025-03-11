@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <form id="enterDetails">
+        <label for="id">ID: </label>
+        <input type="number" id="inputId">
+        <br><br><br>
+        <label for="title">title: </label>
+        <input type="text" id="inputTitle">
+        <br><br><br>
+        <button type="submit">submit</button>
+    </form>
+    <script>
+const form = document.getElementById('enterDetails');
+const inputId = document.getElementById('inputId');
+const inputTitle = document.getElementById('inputTitle');
+let posts = JSON.parse(localStorage.getItem('posts')) || [{ id: 1, title: 'daily JS news' },{ id: 2, title: 'daily Python News' },
+                { id: 3, title: 'daily C# news' },{ id: 4, title: 'daily Java news' }
+            ];
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    posts.push({ id: parseInt(inputId.value), title: inputTitle.value });
+    localStorage.setItem('posts', JSON.stringify(posts));
+    inputId.value = '';
+    inputTitle.value = '';
+    window.location.href = "index.html"; 
+});
+    </script>
+</body>
+</html>
